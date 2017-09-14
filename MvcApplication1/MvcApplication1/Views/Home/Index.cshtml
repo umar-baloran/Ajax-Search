@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = null;
+}
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script src="~/Scripts/jquery-1.8.2.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+</head>
+<body>
+
+    @using (Ajax.BeginForm("Search", new AjaxOptions()
+    {
+        HttpMethod = "Get",
+        InsertionMode = InsertionMode.Replace,
+        UpdateTargetId = "target"
+    }
+    ))
+    {
+        <input type="text" name="word" id="word" value="" />
+        <input type="submit" id="btn" name="searchbtn" value="Search" />
+    }
+
+    <div id="target">
+
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $('#word').keyup(function () {
+                $('form').submit();
+            });
+        });
+    </script>
+</body>
+</html>
